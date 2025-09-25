@@ -1,0 +1,76 @@
+{
+  "name": "calendar-ddeok",
+  "productName": "신야네 캘린더",
+  "version": "1.0.0",
+  "description": "Electron + React + TypeScript 기반 데스크톱 캘린더 투두 애플리케이션",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "concurrently \"yarn dev:vite\" \"yarn dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "wait-on tcp:5173 && yarn electron:compile && electron .",
+    "electron:compile": "tsc -p tsconfig.main.json",
+    "build": "yarn build:vite && yarn build:electron",
+    "build:vite": "vite build",
+    "build:electron": "yarn electron:compile && electron-builder",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "keywords": [
+    "캘린더",
+    "일정관리",
+    "투두",
+    "electron",
+    "react"
+  ],
+  "author": "Shinya",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7",
+    "dayjs": "^1.11.10",
+    "react-datepicker": "^8.7.0",
+    "i18next": "^23.7.11",
+    "react-i18next": "^14.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.93.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.calendar.ddeok",
+    "productName": "신야네 캘린더",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
