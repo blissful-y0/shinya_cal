@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import GlassLayout from '@components/GlassLayout'
+import CalendarShell from '@components/CalendarShell'
+import Sidebar from '@components/Sidebar'
 
 function App() {
+  const [sidebarWidth, setSidebarWidth] = useState(300)
+
   return (
     <div className="app">
-      <h1>신야네 캘린더</h1>
-      <p>프로젝트 초기 설정 완료</p>
+      <GlassLayout>
+        <CalendarShell>
+          <div style={{ padding: '20px', textAlign: 'center' }}>
+            <h1>신야네 캘린더</h1>
+            <p>캘린더 뷰가 여기에 표시됩니다</p>
+          </div>
+        </CalendarShell>
+        <Sidebar width={sidebarWidth} onWidthChange={setSidebarWidth} />
+      </GlassLayout>
     </div>
   )
 }
